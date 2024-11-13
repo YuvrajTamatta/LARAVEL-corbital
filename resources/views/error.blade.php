@@ -7,7 +7,8 @@
     <title>Error</title>
 </head>
 <body>
-    <img src="images/error.png" alt="" height="800px" width="100%">
+    <img src="images/err.gif" alt="" height="800px" width="100%">
+ 
     
 </body>
 </html>

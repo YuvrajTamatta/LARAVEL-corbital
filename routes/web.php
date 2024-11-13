@@ -2,62 +2,77 @@
 
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TestingController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('name');
+// Crud Controller DataBase Working
+Route::get('/show',[UserController::class,'show'])->name('show');
 
-Route::get('/posts', function () {
-    return view('post');
-});
+Route::get('/delete/{id}', [UserController::class,'delete'])->name('delete');
 
-Route::prefix('/uv')->group(function () {
-    Route::get('/a', function () {
-        return "This is a A";
-    });
-    Route::get('/b', function () {
-        return "This is a B";
-    });
-    Route::get('/c', function () {
-        return "This is a C";
-    });
-});
 
-Route::get('pic/{id?}/{comment}', function (string $id = null, string $comment) {
-    if ($id) {
-        return "<h2>Post id : " . $id . $comment . "</h2>";
-    } else {
-        return "<h2>Id Not Found</h2>";
-    }
-})->whereNumber('id')->whereAlpha('comment');
+
+
+
+
+
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('name');
+
+// Route::get('/posts', function () {
+//     return view('post');
+// });
+
+// Route::prefix('/uv')->group(function () {
+//     Route::get('/a', function () {
+//         return "This is a A";
+//     });
+//     Route::get('/b', function () {
+//         return "This is a B";
+//     });
+//     Route::get('/c', function () {
+//         return "This is a C";
+//     });
+// });
+
+// Route::get('pic/{id?}/{comment}', function (string $id = null, string $comment) {
+//     if ($id) {
+//         return "<h2>Post id : " . $id . $comment . "</h2>";
+//     } else {
+//         return "<h2>Id Not Found</h2>";
+//     }
+// })->whereNumber('id')->whereAlpha('comment');
 
 Route::fallback(function () {
     return view('error');
 });
 
-Route::get('uvi', function () {
-    return view('hello.php');
-});
 
-Route::get('uv', function () {
-    return view('layouts.master');
-});
+// Route::get('uvi', function () {
+//     return view('hello.php');
+// });
 
-function getUser()
-{
-    return [
-        1 => ['name' => 'ravi', 'phone' => '123456', 'city' => 'rajot'],
-        2 => ['name' => 'milan', 'phone' => '46987', 'city' => 'surat'],
-        3 => ['name' => 'uvraj', 'phone' => '4659754', 'city' => 'jamnager'],
-        4 => ['name' => 'raj', 'phone' => '3654789', 'city' => 'dubai'],
-        5 => ['name' => 'gaurav', 'phone' => '36547', 'city' => 'goa'],
-    ];
-}
-;
+// Route::get('uv', function () {
+//     return view('layouts.master');
+// });
+
+// function getUser()
+// {
+//     return [
+//         1 => ['name' => 'ravi', 'phone' => '123456', 'city' => 'rajot'],
+//         2 => ['name' => 'milan', 'phone' => '46987', 'city' => 'surat'],
+//         3 => ['name' => 'uvraj', 'phone' => '4659754', 'city' => 'jamnager'],
+//         4 => ['name' => 'raj', 'phone' => '3654789', 'city' => 'dubai'],
+//         5 => ['name' => 'gaurav', 'phone' => '36547', 'city' => 'goa'],
+//     ];
+// }
+// ;
 
 // Route::get('/records', function(){
 //     $na=getUser();
@@ -89,26 +104,41 @@ function getUser()
 // Controllers Routes
 Route::controller(PageController::class)->group(function () {
     Route::get('/cont', 'showUser')->name('home');
-
     Route::get('/user/{name}', 'user');
-
     Route::get('/blog', 'blog')->name('blog');
 
 });
 
 
-Route::get('/invoke', TestingController::class);
+Route::get('/invoke', action: TestingController::class);
 
 
 // Projects Routes
 Route::controller(ProjectController::class)->group(function () {
-
-    Route::get('/project', 'home')->name('home');
-
+    Route::get('/', 'home')->name('home');
     Route::get('/contact/{id?}/{naam?}/{city?}/{phone?}', 'contact')->name('contactus');
-
     Route::get('/about', 'about')->name('about');
+    Route::get('/service', 'service')->name('service');});
 
-    Route::get('/service', 'service')->name('service');
+Route::get('/userform',function(){return view('Crud.form');})->name('userform');
+
+
+Route::controller(UserController::class)->group(function(){    
+    Route::get('/user', 'show')->name('show');
+    Route::post('/adduser',[UserController::class,'adduser'])->name('adduser');
+    Route::get('/edit/{id}',[UserController::class,'edit'])->name('edit');
+    // Route::get('/dt/{name?}', 'dt');
+
+    // AUTHENTICATION SYSTEM
+    Route::get('/login','login')->name('login');
+    Route::post('/logindata', 'logindata')->name('logindata');
+    Route::get('/dashboard', 'dashboardpage')->name('dashboard');
+    Route::get('/logout', 'logout')->name('logout');
+
+
+
+
 });
+
+
 

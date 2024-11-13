@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Container\Attributes\DB;
 use Illuminate\Http\Request;
 
 class TestingController extends Controller
@@ -11,6 +13,7 @@ class TestingController extends Controller
      */
     public function __invoke()
     {
-        return view('welcome');
+        $data = DB::table('users')->get();
+        return $data;
     }
 }
