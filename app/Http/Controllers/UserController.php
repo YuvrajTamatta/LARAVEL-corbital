@@ -57,9 +57,12 @@ class UserController extends Controller
 
     public function logindata(Request $request){
        $credential = $request->validate([
-        'email'=>'required',
+        'email'=>'required|email',
         'password'=>'required'
-       ]);
+       ],
+    [
+        'email'=>"Email is not proper"
+    ]);
 
        if(Auth::attempt($credential)){
         return redirect()->route('dashboard');
@@ -79,4 +82,4 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
-}
+} 

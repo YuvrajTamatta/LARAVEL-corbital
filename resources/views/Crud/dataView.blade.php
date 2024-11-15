@@ -23,7 +23,8 @@
     <thead class="table-dark">
         <th>Id</th>
         <th>Name</th>
-        <th>Email</th>
+        <th>Email</th> 
+        <th>Age</th>
         <th>Checked-On</th>
         <th>Actions</th>
     </thead>
@@ -34,6 +35,7 @@
             <td>{{ $item['id']}}</td>
             <td>{{ $item['name']}}</td>
             <td>{{ $item['email']}}</td>
+            <td>{{ $item['age']}}</td>
             <td>{{ $item['email_verified_at']}}</td>            
             <td>
                 <a href="{{ route('edit',['id'=>$item['id']]) }}"><button class="btn btn-warning btn-sm">Edit</button></a>
