@@ -24,15 +24,15 @@ class UserRequest extends FormRequest
         ];
     }
 
-    public function messages(){
-        return [
-            'name.required' => 'Aree Bhaiyaa naam daalo isme..',
-            'email.required' => 'Email pn nakhvu padse',
-            'email.email' => 'doba email na format ma nakhne',
-            'email_verified_at.required' => 'tarik pe tarik , tarik pe tarik',
-            'password.required' => 'password naakho nai kai ame koine :) '
-        ];
-    }
+    // public function messages(){
+    //     return [
+    //         'name.required' => 'Aree Bhaiyaa naam daalo isme..',
+    //         'email.required' => 'Email pn nakhvu padse',
+    //         'email.email' => 'doba email na format ma nakhne',
+    //         'email_verified_at.required' => 'tarik pe tarik , tarik pe tarik',
+    //         'password.required' => 'password naakho nai kai ame koine :) '
+    //     ];
+    // }
 
     
 

@@ -35,10 +35,9 @@
             <td>{{ $item['id']}}</td>
             <td>{{ $item['name']}}</td>
             <td>{{ $item['email']}}</td>
-            <td>{{ $item['age']}}</td>
             <td>{{ $item['email_verified_at']}}</td>            
             <td>
-                <a href="{{ route('edit',['id'=>$item['id']]) }}"><button class="btn btn-warning btn-sm">Edit</button></a>
+                <a href="{{ route('edit',['id'=>$item['id']]) }}"><button class="btn btn-warning btn-sm my-sm-2">Edit</button></a>
                 <a href="{{ route('delete',['id'=>$item['id']]) }}"><button class="btn btn-danger btn-sm">Delete</button></a></td>
         </tr>
         @endforeach

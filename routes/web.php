@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TestingController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\TestUserMiddleware;
+use App\Http\Middleware\ValidUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 
@@ -12,14 +14,6 @@ use App\Http\Controllers\PageController;
 Route::get('/show',[UserController::class,'show'])->name('show');
 
 Route::get('/delete/{id}', [UserController::class,'delete'])->name('delete');
-
-
-
-
-
-
-
-
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -124,8 +118,10 @@ Route::get('/userform',function(){return view('Crud.form');})->name('userform');
 
 
 Route::controller(UserController::class)->group(function(){    
-    Route::get('/user', 'show')->name('show');
+    Route::get('/show', 'show')->name('show')->middleware(ValidUser::class, TestUserMiddleware::class);
+
     Route::post('/adduser',[UserController::class,'adduser'])->name('adduser');
+
     Route::get('/edit/{id}',[UserController::class,'edit'])->name('edit');
     // Route::get('/dt/{name?}', 'dt');
 
