@@ -130,11 +130,11 @@ Route::controller(UserController::class)->group(function(){
     Route::post('/logindata', 'logindata')->name('logindata');
     Route::get('/dashboard', 'dashboardpage')->name('dashboard');
     Route::get('/logout', 'logout')->name('logout');
-
-
-
-
 });
+
+
+// API ci-jagani working api
+
 
 
 
